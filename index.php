@@ -41,7 +41,17 @@ $items = [
         'Цена' => 5400,
         'URL_img' => 'img/lot-6.jpg'
     ],
-]
+];
+
+function show_price($price) {
+    $price = ceil($price);
+    if ($price < 1000) {
+        return $price . ' ' . '<b class="rub">р</b>';
+    } else {
+        $thousands = floor($price / 1000);
+        return $thousands . ' ' . substr($price,-3,3) . ' ' . '<b class="rub">р</b>';
+    }        
+}
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -127,7 +137,7 @@ $items = [
                     <div class="lot__state">
                         <div class="lot__rate">
                             <span class="lot__amount">Стартовая цена</span>
-                            <span class="lot__cost"><?= $item['Цена']; ?><b class="rub">р</b></span>
+                            <span class="lot__cost"><?= show_price($item['Цена']); ?></span>
                         </div>
                         <div class="lot__timer timer">
 
