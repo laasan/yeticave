@@ -22,3 +22,12 @@ function renderTemplate($page_url, $data_array) {
 
     return ob_get_clean();
 }
+
+date_default_timezone_set("Europe/Moscow");
+
+function getLeftTime() {
+    $midnight = mktime(0, 0, 0, date('n'), date('j') + 1, date('Y'));
+    $left = $midnight - time();
+
+    return floor($left / 3600) . ':'. floor($left % 3600 / 60);
+}
