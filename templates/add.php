@@ -9,10 +9,12 @@
       <div class="form__item <?=checkError('category')?>" >
         <label for="category">Категория</label>
         <select id="category" name="category" required>
-        <?php foreach ($categories as $category) { ?>
-            <?php $selected = ($selectTemp['category'] === $category) ? 'selected' : '' ?>
-            <option {$selected}><?=$category?></option>
-        <?php } ?>
+        <?php
+          foreach ($categories as $category) { 
+            $selected = ($selectTemp['category'] === $category) ? 'selected' : '';
+            echo "<option {$selected}>{$category}</option>";
+          } 
+        ?>
         </select>
         <span class="form__error">Выберите категорию</span>
       </div>
@@ -31,7 +33,7 @@
         </div>
       </div>
       <div class="form__input-file">
-        <input class="visually-hidden" type="file" id="photo2" value="">
+        <input class="visually-hidden" type="file" id="photo2" value="" name="img-input">
         <label for="photo2">
           <span>+ Добавить</span>
         </label>
