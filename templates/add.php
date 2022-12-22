@@ -19,7 +19,7 @@
         <span class="form__error">Выберите категорию</span>
       </div>
     </div>
-    <div class="form__item form__item--wide">
+    <div class="form__item form__item--wide <?=checkError('message')?>">
       <label for="message">Описание</label>
       <textarea id="message" name="message" placeholder="Напишите описание лота" required></textarea>
       <span class="form__error">Напишите описание лота</span>
@@ -40,22 +40,22 @@
       </div>
     </div>
     <div class="form__container-three">
-      <div class="form__item form__item--small">
+      <div class="form__item form__item--small <?=checkError('lot-rate')?>">
         <label for="lot-rate">Начальная цена</label>
         <input id="lot-rate" type="number" name="lot-rate" placeholder="0" required>
         <span class="form__error">Введите начальную цену</span>
       </div>
-      <div class="form__item form__item--small">
+      <div class="form__item form__item--small <?=checkError('lot-state')?>">
         <label for="lot-step">Шаг ставки</label>
         <input id="lot-step" type="number" name="lot-step" placeholder="0" required>
         <span class="form__error">Введите шаг ставки</span>
       </div>
-      <div class="form__item">
+      <div class="form__item <?=checkError('lot-date')?>">
         <label for="lot-date">Дата окончания торгов</label>
         <input class="form__input-date" id="lot-date" type="date" name="lot-date" required>
         <span class="form__error">Введите дату завершения торгов</span>
       </div>
     </div>
-    <span class="form__error form__error--bottom">Пожалуйста, исправьте ошибки в форме.</span>
+    <span class="form__error <?=hasError() ? 'form__error--bottom' : ''?>">Пожалуйста, исправьте ошибки в форме.</span>
     <button type="submit" class="button">Добавить лот</button>
   </form>
