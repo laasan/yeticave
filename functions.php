@@ -25,9 +25,14 @@ function renderTemplate($page_url, $data_array) {
 
 date_default_timezone_set("Europe/Moscow");
 
-function getLeftTime() {
-    $midnight = mktime(0, 0, 0, date('n'), date('j') + 1, date('Y'));
+function getLeftTime($midnight) {
+    if (!$midnight) {
+        $midnight = mktime(0, 0, 0, date('n'), date('j') + 1, date('Y'));
+    }
+
     $left = $midnight - time();
+    // $left = $midnight; // - time();
 
     return floor($left / 3600) . ':'. floor($left % 3600 / 60);
+    // return floor($left / 86400) . ' days ' . floor($left / 86400 / 3600) . ':'. floor($left / 86400 % 3600 / 60);
 }
