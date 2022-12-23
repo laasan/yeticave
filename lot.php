@@ -8,6 +8,8 @@ if(!isset($items[$id])) {
     die;
 }
 
+addItemsHistory($id);
+
 $item = $items[$id];
 
 $page_content = renderTemplate('/templates/lot.php', ['item' => $item, 'bets' => $bets]);

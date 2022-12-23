@@ -36,3 +36,19 @@ function getLeftTime($midnight) {
     return floor($left / 3600) . ':'. floor($left % 3600 / 60);
     // return floor($left / 86400) . ' days ' . floor($left / 86400 / 3600) . ':'. floor($left / 86400 % 3600 / 60);
 }
+
+function getItemsHistory() {
+    $history = $_COOKIE['items-history'] ?? [];
+
+    $history = empty($history) ? [] : unserialize($history, ['allowed_classes' => false]);
+    return $history;
+}
+
+function addItemsHistory($id) {
+    $history = getItemsHistory();
+
+    $history[] = $id;
+    $history = array_unique($history, SORT_NUMERIC);
+
+    setcookie('items-history', serialize($history), time() + 7 * 86400);
+}
