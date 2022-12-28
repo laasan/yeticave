@@ -2,14 +2,8 @@
 require_once 'functions.php';
 require_once 'data.php';
 
-function hasError() {
-    global $errors;
-    return (count($errors));
-}
-
-function checkError($field) {
-    global $errors;
-    return !empty($errors[$field]) ? 'form__item--invalid' : '';
+if(!isAuth()) {
+    errorPage(403);
 }
 
 $input_temp = [];
