@@ -17,9 +17,9 @@ $page_content = renderTemplate('/templates/lot.php', ['item' => $item, 'bets' =>
 $layout_content = renderTemplate('/templates/layout.php',
     ['content' => $page_content,
      'title' => 'Главная',
-     'is_auth' => $is_auth,
-     'user_name' => $user_name,
-     'user_avatar' => $user_avatar,
+     'is_auth' => isAuth(),
+     'user_name' => getName(),
+     'user_avatar' => getAvatar(),
      'categories' => $categories]);
 
 print($layout_content);

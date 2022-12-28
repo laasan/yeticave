@@ -113,3 +113,10 @@ function getName() {
 function getAvatar() {
     return $_SESSION['avatar'] ?? '';
 }
+
+function errorPage($code) {
+    http_response_code($code);
+    $_SERVER['REDIRECT_STATUS'] = $code;
+    require_once 'error.php';
+    exit();
+}
