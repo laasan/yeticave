@@ -35,3 +35,33 @@ INSERT INTO `bids` (`user_id`, `lot_id`, `data_insert`, `sum`) VALUES
 (2,5, now(), 7500),
 (3,6, now(), 5500),
 (3,6, now(), 5400);
+
+
+## Запросы
+# Получить список всех категорий
+SELECT name FROM `categories`;
+
+# Получить список самых новых открытых лотов.
+SELECT l.id, l.name, l.price_start, l.image_url, MAX(b.sum) AS price, COUNT(b.id) AS count_bids, c.name as category_name
+FROM `lots` AS l
+JOIN bids AS b ON l.id = b.lot_id
+JOIN categories as c ON c.id = l.category_id
+GROUP BY b.lot_id;
+
+# Получить лот по его ID c названием категории к которой он принадлежит
+SELECT l.id, l.name, c.name AS category_name
+FROM `lots` AS l
+JOIN categories AS c ON c.id = l.category_id
+WHERE l.id = 3;
+
+# Обновить название лота по его ID
+UPDATE `lots`
+SET name = '2014 Rossignol District Snowboard Black Edition'
+WHERE id = 2;
+
+# Получить список самых свежих ставок для лота по его ID
+SELECT b.id, b.user_id, b.data_insert, b.sum
+FROM bids b
+JOIN lots l ON b.lot_id = l.id
+WHERE l.id = 4
+ORDER BY sum DESC;
