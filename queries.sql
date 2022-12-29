@@ -65,3 +65,28 @@ FROM bids b
 JOIN lots l ON b.lot_id = l.id
 WHERE l.id = 4
 ORDER BY sum DESC;
+
+
+# my solutions
+SELECT * FROM categories
+
+SELECT l.name, l.price_start, l.image_url, MAX(b.sum), COUNT(b.lot_id), c.name
+  FROM lots l
+  LEFT JOIN categories c
+    ON c.id = l.category_id
+  LEFT JOIN bids b
+    ON b.lot_id = l.id
+ WHERE l.active = 1
+ GROUP BY lot_id
+
+ SELECT l.name, c.name
+  FROM lots l
+  LEFT JOIN categories c
+    ON l.category_id = c.id
+ WHERE l.id = 3
+
+ SELECT b.sum
+  FROM lots l
+  JOIN bids b ON l.id = b.lot_id
+ WHERE l.id = 1
+ ORDER BY b.sum DESC 
