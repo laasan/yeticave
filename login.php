@@ -37,7 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     unset($arRes);
 }
-
+echo "auth: ". isAuth() ." ";
+echo "user: ". $_SESSION['user'] ." ";
 if(isAuth()) {
     $indexContent = renderTemplate(
         '/templates/welcome.php',

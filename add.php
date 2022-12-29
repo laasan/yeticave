@@ -1,8 +1,11 @@
 <?php
 require_once 'functions.php';
 require_once 'data.php';
+require_once 'userdata.php';
 
 if(!isAuth()) {
+    echo "auth: ". isAuth() ." ";
+    echo "user: ". $_SESSION['user'] ." ";
     errorPage(403);
 }
 
