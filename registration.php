@@ -11,7 +11,7 @@ $arRes = array_fill_keys($requiredFields, '');
 $errors = [];
 
 $content = renderTemplate(
-    'registration.php',
+    '/templates/registration.php',
     [
         'arRes' => $arRes,
         'errors' => $errors
