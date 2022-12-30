@@ -7,11 +7,11 @@ $email = '';
 $errors = [];
 $requiredFields = ['email', 'password'];
 
-if (isset($_GET['login']) && $_GET['login'] === 'true') {
-    logout();
-    header('Location: /');
-    exit();
-}
+// if (isset($_GET['login']) && $_GET['login'] === 'true') {
+//     logout();
+//     header('Location: /');
+//     exit();
+// }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -43,7 +43,9 @@ if(isAuth()) {
     $indexContent = renderTemplate(
         '/templates/welcome.php',
         [
-            'message' => 'Добро пожаловать, ' . getName() . '!'
+            'message' => 'Добро пожаловать, ' . getName() . '!',
+            'button' => 'Выйти',
+            'buttonUrl' => '/logout.php'
         ]
     );
 } else {

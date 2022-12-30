@@ -2,10 +2,12 @@
 require_once 'functions.php';
 
 if(isAuth()) {
-    $indexContent = renderTemplate(
+    $content = renderTemplate(
         '/templates/welcome.php',
         [
-            'message' => 'Вы авторизованы. Хотите выйти?'
+            'message' => 'Вы авторизованы. Хотите выйти?',
+            'button' => 'Выйти',
+            'buttonUrl' => '/logout.php?logout=true'
         ]
     );
 } else {
@@ -13,9 +15,15 @@ if(isAuth()) {
     exit();
 }
 
+if (isset($_GET['logout']) && $_GET['logout'] === 'true') {
+    logout();
+    header('Location: /');
+    exit();
+}
+
 $layout_content = renderTemplate('/templates/layout.php',
-    ['content' => $indexContent,
-     'title' => 'Авторизация'
+    ['content' => $content,
+     'title' => 'Завершение сеанса'
     ]);
 
 print($layout_content);
