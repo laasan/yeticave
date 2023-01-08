@@ -16,6 +16,8 @@ $requiredFields = ['email', 'password'];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     foreach ($requiredFields as $field) {
+        $value = htmlspecialchars($_POST[$field]);
+        $arRes[$field] = $value;
         if (empty($field)) {
             $errors[$field] = 'Поле не заполнено';
         }
